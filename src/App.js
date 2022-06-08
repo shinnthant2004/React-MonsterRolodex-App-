@@ -1,10 +1,12 @@
 import "./App.css";
 import { Component } from "react";
+import CardList from "./components/card-list/card-list.component";
 class App extends Component {
   constructor() {
     super();
     this.state = {
       monsters: [],
+      searchWord: "",
     };
   }
   componentDidMount() {
@@ -18,8 +20,33 @@ class App extends Component {
         });
       });
   }
+  onSearchChange = (event) => {
+    const searchWord = event.target.value.toLowerCase();
+    this.setState(() => {
+      return {
+        searchWord,
+      };
+    });
+  };
   render() {
-    return <div className="App"></div>;
+    const { monsters, searchWord } = this.state;
+    const { onSearchChange } = this;
+
+    const filteredMonsters = monsters.filter((monster) => {
+      return monster.name.toLowerCase().includes(searchWord);
+    });
+
+    return (
+      <div className="App">
+        <input
+          type="search"
+          className="search-box"
+          placeholder="search monsters"
+          onChange={onSearchChange}
+        />
+        <CardList monsters={filteredMonsters}></CardList>
+      </div>
+    );
   }
 }
 export default App;
