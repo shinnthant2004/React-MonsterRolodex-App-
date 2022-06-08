@@ -4,15 +4,22 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      name: "shinn",
+      monsters: [],
     };
   }
+  componentDidMount() {
+    fetch(`http://jsonplaceholder.typicode.com/users`)
+      .then((response) => response.json())
+      .then((users) => {
+        this.setState(() => {
+          return {
+            monsters: users,
+          };
+        });
+      });
+  }
   render() {
-    return (
-      <div className="App">
-        <h1>{this.state.name}</h1>
-      </div>
-    );
+    return <div className="App"></div>;
   }
 }
 export default App;
