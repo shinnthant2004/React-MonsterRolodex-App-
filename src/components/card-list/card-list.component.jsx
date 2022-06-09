@@ -3,7 +3,6 @@ import Card from "./card.component";
 import './card-list.styles.css'
 class CardList extends Component{
   render(){
-      console.log('card-list render')
       const {monsters} = this.props;
       return(
           <div className="card-list">

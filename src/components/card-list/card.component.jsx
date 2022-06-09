@@ -2,7 +2,6 @@ import { Component } from "react";
 import './card.styles.css'
 class Card extends Component{
     render(){
-        console.log('card render')
         const {id,name,email} =this.props.monster;
         return(
             <div className="card-container">
